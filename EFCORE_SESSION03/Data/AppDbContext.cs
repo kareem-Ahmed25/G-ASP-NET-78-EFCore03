@@ -1,4 +1,5 @@
-﻿using EFCORE_SESSION03.Models;
+﻿using EFCORE_SESSION03.Configurations;
+using EFCORE_SESSION03.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,11 @@ namespace EFCORE_SESSION03.Data
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+            modelBuilder.ApplyConfiguration(new InstructorConfiguration());
+            modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new CourseConfiguration());
+            modelBuilder.ApplyConfiguration(new StudentConfiguration());
+            modelBuilder.ApplyConfiguration(new EnrollmentConfiguration());
         }
 
     }
