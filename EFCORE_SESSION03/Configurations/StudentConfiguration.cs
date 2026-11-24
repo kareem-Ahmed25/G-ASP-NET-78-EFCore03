@@ -18,6 +18,10 @@ namespace EFCORE_SESSION03.Configurations
             builder.Property(s => s.DateOfBirth).IsRequired();
 
             builder.HasIndex(s => s.Email).IsUnique();
+            builder.HasData(
+        new Student { Id = 1, FullName = "Omar Ali", Email = "omar.ali@example.com", DateOfBirth = new DateTime(2000, 4, 12) },
+        new Student { Id = 2, FullName = "Mona Khaled", Email = "mona.khaled@example.com", DateOfBirth = new DateTime(2001, 9, 3) }
+    );
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace EFCORE_SESSION03.Configurations
 {
-    public class InstructorConfiguration:IEntityTypeConfiguration<Instructor>
+    public class InstructorConfiguration : IEntityTypeConfiguration<Instructor>
     {
         public void Configure(EntityTypeBuilder<Instructor> builder)
         {
@@ -24,6 +24,12 @@ namespace EFCORE_SESSION03.Configurations
                    .WithOne(c => c.Instructor)
                    .HasForeignKey(c => c.InstructorId)
                    .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasData(
+    new Instructor { Id = 1, FullName = "Ahmed Hassan", Email = "ahmed.hassan@example.com", Bio = "Backend developer and trainer", JoinedDate = new DateTime(2023, 1, 10) },
+    new Instructor { Id = 2, FullName = "Sara Mostafa", Email = "sara.mostafa@example.com", JoinedDate = new DateTime(2023, 6, 5) }
+);
+
         }
     }
 }

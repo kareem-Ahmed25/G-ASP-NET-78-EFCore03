@@ -1,4 +1,5 @@
-﻿using EFCORE_SESSION03.Models;
+﻿using EFCORE_SESSION03.Enums;
+using EFCORE_SESSION03.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -27,6 +28,11 @@ namespace EFCORE_SESSION03.Configurations
                    .WithMany(c => c.Enrollments)
                    .HasForeignKey(e => e.CourseId)
                    .OnDelete(DeleteBehavior.Cascade);
+            builder.HasData(
+    new Enrollment { StudentId = 1, CourseId = 1, EnrollmentDate = new DateTime(2024, 2, 1), ProgressPercentage = 100m, Status = EnrollmentStatus.Completed, FinalGrade = 92.50m },
+    new Enrollment { StudentId = 1, CourseId = 2, EnrollmentDate = new DateTime(2024, 3, 10), ProgressPercentage = 40m, Status = EnrollmentStatus.Active },
+    new Enrollment { StudentId = 2, CourseId = 1, EnrollmentDate = new DateTime(2024, 2, 5), ProgressPercentage = 15m, Status = EnrollmentStatus.Active }
+);
         }
     }
 }

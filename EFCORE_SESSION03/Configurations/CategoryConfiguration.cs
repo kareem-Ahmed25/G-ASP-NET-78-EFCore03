@@ -25,6 +25,12 @@ namespace EFCORE_SESSION03.Configurations
                    .WithOne(c => c.Category)
                    .HasForeignKey(c => c.CategoryId)
                    .OnDelete(DeleteBehavior.Restrict);
+            builder.HasData(
+    new Category { Id = 1, Name = "Programming", Description = "All programming courses", ParentCategoryId = null },
+    new Category { Id = 2, Name = "Backend", ParentCategoryId = 1 },
+    new Category { Id = 3, Name = "ASP.NET", ParentCategoryId = 2 },
+    new Category { Id = 4, Name = "Design", Description = "Design and creativity", ParentCategoryId = null }
+);
         }
     }
 }

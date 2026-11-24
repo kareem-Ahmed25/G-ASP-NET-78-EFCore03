@@ -47,6 +47,32 @@ namespace EFCORE_SESSION03.Migrations
                     b.HasIndex("ParentCategoryId");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "All programming courses",
+                            Name = "Programming"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Backend",
+                            ParentCategoryId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "ASP.NET",
+                            ParentCategoryId = 2
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Design and creativity",
+                            Name = "Design"
+                        });
                 });
 
             modelBuilder.Entity("EFCORE_SESSION03.Models.Course", b =>
@@ -92,6 +118,52 @@ namespace EFCORE_SESSION03.Migrations
                     b.HasIndex("InstructorId");
 
                     b.ToTable("Courses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryId = 1,
+                            Description = "Learn C# from scratch",
+                            InstructorId = 1,
+                            IsPublished = true,
+                            Level = 0,
+                            Price = 49.99m,
+                            PublishedDate = new DateTime(2024, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "C# Fundamentals"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryId = 3,
+                            InstructorId = 1,
+                            IsPublished = true,
+                            Level = 1,
+                            Price = 89.99m,
+                            PublishedDate = new DateTime(2024, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "ASP.NET Core MVC"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoryId = 2,
+                            InstructorId = 2,
+                            IsPublished = false,
+                            Level = 2,
+                            Price = 120.00m,
+                            Title = "EF Core Mastery"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CategoryId = 4,
+                            InstructorId = 2,
+                            IsPublished = true,
+                            Level = 0,
+                            Price = 35.00m,
+                            PublishedDate = new DateTime(2024, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "UI Design Basics"
+                        });
                 });
 
             modelBuilder.Entity("EFCORE_SESSION03.Models.Enrollment", b =>
@@ -121,6 +193,33 @@ namespace EFCORE_SESSION03.Migrations
                     b.HasIndex("CourseId");
 
                     b.ToTable("Enrollments");
+
+                    b.HasData(
+                        new
+                        {
+                            StudentId = 1,
+                            CourseId = 1,
+                            EnrollmentDate = new DateTime(2024, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FinalGrade = 92.50m,
+                            ProgressPercentage = 100m,
+                            Status = 1
+                        },
+                        new
+                        {
+                            StudentId = 1,
+                            CourseId = 2,
+                            EnrollmentDate = new DateTime(2024, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProgressPercentage = 40m,
+                            Status = 0
+                        },
+                        new
+                        {
+                            StudentId = 2,
+                            CourseId = 1,
+                            EnrollmentDate = new DateTime(2024, 2, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ProgressPercentage = 15m,
+                            Status = 0
+                        });
                 });
 
             modelBuilder.Entity("EFCORE_SESSION03.Models.Instructor", b =>
@@ -154,6 +253,23 @@ namespace EFCORE_SESSION03.Migrations
                         .IsUnique();
 
                     b.ToTable("Instructors");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Bio = "Backend developer and trainer",
+                            Email = "ahmed.hassan@example.com",
+                            FullName = "Ahmed Hassan",
+                            JoinedDate = new DateTime(2023, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Email = "sara.mostafa@example.com",
+                            FullName = "Sara Mostafa",
+                            JoinedDate = new DateTime(2023, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("EFCORE_SESSION03.Models.Student", b =>
@@ -183,6 +299,22 @@ namespace EFCORE_SESSION03.Migrations
                         .IsUnique();
 
                     b.ToTable("Students");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DateOfBirth = new DateTime(2000, 4, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "omar.ali@example.com",
+                            FullName = "Omar Ali"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DateOfBirth = new DateTime(2001, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "mona.khaled@example.com",
+                            FullName = "Mona Khaled"
+                        });
                 });
 
             modelBuilder.Entity("EFCORE_SESSION03.Models.Category", b =>
